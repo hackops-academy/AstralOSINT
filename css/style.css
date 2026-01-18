@@ -1,0 +1,61 @@
+body {
+    margin: 0;
+    background: #0b0e14;
+    color: #e5e7eb;
+    font-family: Arial, sans-serif;
+}
+
+/* TOP BAR */
+#topbar {
+    background: #020617;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* CONTROLS */
+#controls {
+    background: #020617;
+    padding: 8px;
+    text-align: center;
+}
+
+#controls button {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+#controls button:hover {
+    background: #1d4ed8;
+}
+
+/* MAP */
+#map {
+    height: calc(100vh - 90px);
+    width: 100%;
+}
+/* INFO PANEL */
+#infoPanel {
+    background: #020617;
+    color: #e5e7eb;
+    padding: 10px;
+    font-size: 14px;
+}
+
+#pointList {
+    list-style: none;
+    padding: 0;
+}
+
+#pointList li {
+    margin-bottom: 6px;
+}
+
+#summary {
+    margin-top: 8px;
+    font-weight: bold;
+  }
