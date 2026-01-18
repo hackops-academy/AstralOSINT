@@ -1,1 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sentinel Maps – OSINT</title>
 
+    <!-- Leaflet -->
+    <link rel="stylesheet"
+          href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div id="topbar">
+    🗺 Sentinel Map Intelligence
+</div>
+
+<!-- CONTROL PANEL -->
+<div id="controls">
+    <button onclick="clearPoints()">🧹 Clear</button>
+    <button onclick="drawRoute()">🧭 Route</button>
+</div>
+<!-- INFO PANEL -->
+<div id="infoPanel">
+    <b>Selected Points</b>
+    <ul id="pointList"></ul>
+    <div id="summary"></div>
+</div>
+<!-- MAP -->
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="js/map.js"></script>
+<script src="js/routes.js"></script>
+<script src="js/ui.js"></script>
+
+</body>
+</html>
