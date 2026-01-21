@@ -1,61 +1,138 @@
-body {
-    margin: 0;
-    background: #0b0e14;
-    color: #e5e7eb;
-    font-family: Arial, sans-serif;
+:root {
+    --neon-blue: #00eaff;
+    --bg-dark: #0b0f14;
+    --panel-bg: rgba(18, 24, 32, 0.95);
+    --danger: #ff4444;
 }
 
-/* TOP BAR */
-#topbar {
-    background: #020617;
-    padding: 10px;
-    text-align: center;
-    font-weight: bold;
-}
+* { box-sizing: border-box; outline: none; -webkit-tap-highlight-color: transparent; }
 
-/* CONTROLS */
-#controls {
-    background: #020617;
-    padding: 8px;
-    text-align: center;
-}
+body { margin: 0; background: var(--bg-dark); font-family: 'Segoe UI', sans-serif; overflow: hidden; }
 
-#controls button {
-    background: #2563eb;
-    color: white;
-    border: none;
-    padding: 6px 12px;
-    margin: 0 5px;
+/* MAP CONTAINER */
+#map { height: 100vh; width: 100%; z-index: 1; }
+
+/* HAMBURGER BUTTON (Visible when menu is closed) */
+#menu-btn {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 2000; /* Above everything */
+    background: var(--bg-dark);
+    color: var(--neon-blue);
+    border: 1px solid var(--neon-blue);
+    padding: 10px 15px;
+    font-size: 20px;
+    border-radius: 4px;
     cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 234, 255, 0.2);
 }
 
-#controls button:hover {
-    background: #1d4ed8;
+/* SIDE MENU */
+#side-menu {
+    position: fixed;
+    top: 0;
+    left: -320px; /* Hidden by default */
+    width: 300px;
+    height: 100vh;
+    background: var(--panel-bg);
+    backdrop-filter: blur(10px);
+    border-right: 1px solid var(--neon-blue);
+    padding: 20px;
+    z-index: 3000;
+    transition: left 0.3s ease-in-out;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
 }
 
-/* MAP */
-#map {
-    height: calc(100vh - 90px);
+/* CLASS TO OPEN MENU */
+#side-menu.active {
+    left: 0; /* Slide in */
+}
+
+/* CLOSE BUTTON INSIDE MENU */
+.close-btn {
+    align-self: flex-end;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+/* HEADERS */
+h2 { color: var(--neon-blue); text-align: center; margin-top: 0; font-size: 1.2rem; }
+h3 { color: #aaa; font-size: 0.8rem; border-bottom: 1px solid #333; margin-top: 15px; padding-bottom: 5px; }
+
+/* INPUTS */
+input, textarea, select {
     width: 100%;
-}
-/* INFO PANEL */
-#infoPanel {
-    background: #020617;
-    color: #e5e7eb;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid #333;
+    color: #fff;
     padding: 10px;
-    font-size: 14px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+}
+input:focus { border-color: var(--neon-blue); }
+
+/* BUTTON GRID SYSTEM (Fixes the mess) */
+.btn-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 buttons per row */
+    gap: 8px;
 }
 
-#pointList {
-    list-style: none;
-    padding: 0;
+.btn-group.full { grid-template-columns: 1fr; } /* Full width for main actions */
+
+button {
+    background: #1c2533;
+    color: #fff;
+    border: 1px solid #333;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    transition: 0.2s;
 }
 
-#pointList li {
-    margin-bottom: 6px;
+button:hover { background: var(--neon-blue); color: #000; }
+
+button.danger { border-color: var(--danger); color: var(--danger); }
+button.danger:hover { background: var(--danger); color: #fff; }
+
+/* LIST ITEMS */
+#point-list { max-height: 150px; overflow-y: auto; margin-top: 10px; }
+.point-item {
+    background: rgba(255,255,255,0.05);
+    padding: 8px;
+    margin-bottom: 5px;
+    border-left: 3px solid var(--neon-blue);
+    font-size: 0.85rem;
+}
+/* Hide the default white instruction box from Leaflet Routing Machine */
+.leaflet-routing-container {
+    display: none !important;
 }
 
-#summary {
-    margin-top: 8px;
-    font-weight: bold;
-  }
+/* Make sure the route line glows */
+path.leaflet-interactive {
+    stroke-linecap: round;
+    filter: drop-shadow(0 0 5px #00eaff);
+}
+/* Force route lines to be on top and glowing */
+path.leaflet-interactive {
+    stroke: #ff0000 !important; /* Neon Blue */
+    stroke-width: 6px !important;
+    stroke-opacity: 0.8 !important;
+    filter: drop-shadow(0 0 8px #ff0000); /* Glow effect */
+    pointer-events: auto; /* Allow clicking */
+    z-index: 9999;
+}
+
+/* Hide the white instruction box if it's blocking view */
+.leaflet-routing-container {
+    display: none !important;
+    }
