@@ -2,39 +2,100 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Sentinel Maps – OSINT</title>
+    <title>AstraOSINT | GEOINT Console</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Leaflet -->
-    <link rel="stylesheet"
-          href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster/dist/MarkerCluster.Default.css"/>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.css" />
 
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<!-- TOP BAR -->
-<div id="topbar">
-    🗺 Sentinel Map Intelligence
-</div>
+    <div id="map"></div>
+    
+    <button id="menu-btn" onclick="toggleMenu()">☰</button>
 
-<!-- CONTROL PANEL -->
-<div id="controls">
-    <button onclick="clearPoints()">🧹 Clear</button>
-    <button onclick="drawRoute()">🧭 Route</button>
-</div>
-<!-- INFO PANEL -->
-<div id="infoPanel">
-    <b>Selected Points</b>
-    <ul id="pointList"></ul>
-    <div id="summary"></div>
-</div>
-<!-- MAP -->
-<div id="map"></div>
+    <div id="side-menu">
+        <button class="close-btn" onclick="toggleMenu()">×</button>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="js/map.js"></script>
-<script src="js/routes.js"></script>
-<script src="js/ui.js"></script>
+        <h2>🛰 AstraOSINT</h2>
 
+        <div class="menu-section">
+            <h3>SEARCH</h3>
+            <div class="btn-group full">
+                <input id="search-input" placeholder="Search place (e.g. New York)">
+                <button onclick="searchPlace()">Search Location</button>
+            </div>
+        </div>
+
+        <div class="menu-section">
+            <h3>MAP MODES</h3>
+            <div class="btn-group">
+                <button onclick="setLayer('street')">Street</button>
+                <button onclick="setLayer('satellite')">Satellite</button>
+                <button onclick="setLayer('terrain')">Terrain</button>
+                <button onclick="setLayer('dark')">Dark Mode</button>
+            </div>
+        </div>
+
+        <div class="menu-section">
+            <h3>COORDINATES</h3>
+            <input id="lat" readonly placeholder="Latitude">
+            <input id="lng" readonly placeholder="Longitude">
+            <textarea id="address" rows="2" readonly placeholder="Address"></textarea>
+        </div>
+
+        <div class="menu-section">
+            <h3>SAVE INTEL</h3>
+            <input id="point-name" placeholder="Target Name">
+            <input id="point-tag" placeholder="Tag (e.g. WiFi, Cam)">
+            <div class="btn-group">
+                <button onclick="savePoint()">Save</button>
+                <button class="danger" onclick="clearSavedPoints()">Clear All</button>
+            </div>
+            <div id="point-list"></div>
+        </div>
+
+        <div class="menu-section">
+            <h3>ROUTING</h3>
+            <select id="route-start"></select>
+            <select id="route-end"></select>
+            <div class="btn-group">
+                <button onclick="createRoute()">Plot Route</button>
+                <button onclick="clearRoute()">Clear Path</button>
+            </div>
+            <div id="route-info" style="margin-top:5px; font-size:12px; color:#aaa;"></div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script src="https://unpkg.com/leaflet.markercluster/dist/leaflet.markercluster.js"></script>
+
+    <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.js"></script>
+
+    <script src="js/map.js"></script> 
+    
+    <script>
+        // Simple Menu Logic
+        function toggleMenu() {
+            document.getElementById('side-menu').classList.toggle('active');
+        }
+        // Auto-close menu on map click (Mobile UX)
+        // Note: map is defined in js/map.js, so we wait for load
+        window.addEventListener('load', () => {
+             if(typeof map !== 'undefined') {
+                 map.on('click', () => {
+                     document.getElementById('side-menu').classList.remove('active');
+                 });
+             }
+        });
+    </script>
 </body>
-</html>
+    </html>
+                                                                 
