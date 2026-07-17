@@ -1,8 +1,9 @@
+# 🛰️ AstraOSINT | Tactical GEOINT Console
+
 <p align="center">
   <img src="assets/astraosint_banner.png" alt="AstraOSINT — Tactical GEOINT Console, made by HackOps Academy" width="100%">
 </p>
 
-# 🛰️ AstraOSINT | Tactical GEOINT Console
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Version](https://img.shields.io/badge/version-2.0.0-orange.svg)
@@ -136,7 +137,7 @@ Contributions are welcome! If you have ideas for new layers (Thermal, Weather, e
 
 ## 📖 Learn more
 
-- **[Full course — hackops-academy.github.io/astraosint](https://hackops-academy.github.io/AstralOSINT/)**
+- **[Full course — hackops-academy.github.io/AstralOSINT](https://hackops-academy.github.io/AstralOSINT/)**
   — a 13-module walkthrough on operating AstraOSINT like a professional, from
   first launch through a complete tactical research methodology.
 
