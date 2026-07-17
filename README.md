@@ -136,7 +136,7 @@ Contributions are welcome! If you have ideas for new layers (Thermal, Weather, e
 
 ## 📖 Learn more
 
-- **[Full course — hackops-academy.github.io/astraosint](https://hackops-academy.github.io/astraosint/)**
+- **[Full course — hackops-academy.github.io/astraosint](https://hackops-academy.github.io/AstralOSINT/)**
   — a 13-module walkthrough on operating AstraOSINT like a professional, from
   first launch through a complete tactical research methodology.
 
@@ -144,3 +144,4 @@ Contributions are welcome! If you have ideas for new layers (Thermal, Weather, e
 This tool is intended for Open Source Intelligence (OSINT) research and educational purposes. Always respect privacy laws and the Terms of Service of the map data providers.
 
 Developed with ❤️ by HackOps Academy.
+
